@@ -1502,7 +1502,7 @@ class StampSystem {
         this.html5QrCode = new Html5Qrcode("reader");
         const SCAN_BUTTON = document.getElementById("btn-scan");
         if (SCAN_BUTTON) {
-            SCAN_BUTTON.addEventListener("click", () => this.judgeGetPoint());
+            SCAN_BUTTON.addEventListener("click", () => this.startScanning());
         }
         this.renderStamps();
     }
@@ -1540,43 +1540,43 @@ class StampSystem {
     judgeGetPoint() {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.isNight()) {
+                this.stamps += 1;
+                if (this.stamps > 10) {
+                    this.stamps = 1;
+                }
+                else if (this.stamps === 5) {
+                    const PRESENT_IMG = document.getElementById("imgPresent");
+                    const STAMP = document.getElementById(`stamp${this.stamps}`);
+                    STAMP.src = "stamp5-small-present--ok.png";
+                    PRESENT_IMG.src = "present.gif";
+                    yield new UtilsFunctions().sleep(3000);
+                    PRESENT_IMG.style.display = "none";
+                    alert("500円分のプレゼントを獲得しました！");
+                }
+                else if (this.stamps === 10) {
+                    const PRESENT_IMG = document.getElementById("imgPresent");
+                    const STAMP = document.getElementById(`stamp${this.stamps}`);
+                    STAMP.src = "stamp10-big-present--ok.png";
+                    PRESENT_IMG.src = "present.gif";
+                    yield new UtilsFunctions().sleep(3000);
+                    PRESENT_IMG.style.display = "none";
+                    alert("1000円分のプレゼントを獲得しました！");
+                }
+                else {
+                    alert("スタンプ獲得！！");
+                    const STAMP = document.getElementById(`stamp${this.stamps}`);
+                    STAMP.src = "stamp--ok.png";
+                    const n = 10;
+                    const rndNumber = Math.floor(Math.random() * n) + 1;
+                    const PRESENT_IMG = document.getElementById("imgPresent");
+                    console.log(`img_bonus${rndNumber}`);
+                    PRESENT_IMG.src = `img_bonus${rndNumber}.png`;
+                    PRESENT_IMG.style.display = "block";
+                    yield new UtilsFunctions().sleep(4000);
+                    PRESENT_IMG.style.display = "none";
+                }
+                this.FirebaseFunc.uploadData("stamps", this.stamps);
             }
-            this.stamps += 1;
-            if (this.stamps > 10) {
-                this.stamps = 1;
-            }
-            else if (this.stamps === 5) {
-                const PRESENT_IMG = document.getElementById("imgPresent");
-                const STAMP = document.getElementById(`stamp${this.stamps}`);
-                STAMP.src = "stamp5-small-present--ok.png";
-                PRESENT_IMG.src = "present.gif";
-                yield new UtilsFunctions().sleep(3000);
-                PRESENT_IMG.style.display = "none";
-                alert("500円分のプレゼントを獲得しました！");
-            }
-            else if (this.stamps === 10) {
-                const PRESENT_IMG = document.getElementById("imgPresent");
-                const STAMP = document.getElementById(`stamp${this.stamps}`);
-                STAMP.src = "stamp10-big-present--ok.png";
-                PRESENT_IMG.src = "present.gif";
-                yield new UtilsFunctions().sleep(3000);
-                PRESENT_IMG.style.display = "none";
-                alert("1000円分のプレゼントを獲得しました！");
-            }
-            else {
-                alert("スタンプ獲得！！");
-                const STAMP = document.getElementById(`stamp${this.stamps}`);
-                STAMP.src = "stamp--ok.png";
-                const n = 10;
-                const rndNumber = Math.floor(Math.random() * n) + 1;
-                const PRESENT_IMG = document.getElementById("imgPresent");
-                console.log(`img_bonus${rndNumber}`);
-                PRESENT_IMG.src = `img_bonus${rndNumber}.png`;
-                PRESENT_IMG.style.display = "block";
-                yield new UtilsFunctions().sleep(4000);
-                PRESENT_IMG.style.display = "none";
-            }
-            this.FirebaseFunc.uploadData("stamps", this.stamps);
         });
     }
     isNight() {
