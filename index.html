@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <title>My StampCard</title>
+    </head>
+
+    <body>
+        <header class="header">
+            <img  class="header__logo"      id="header__logo"     src="header.png">
+            <img  class="header__labo-logo" id="headerLaboLogo"   src="labo-logo.png">
+            <img  class="header__btn"       id="headerSettingBtn" src="btn.png" >
+            <span class="header__user-name" id="headerUserName"></span>
+            <div  class="menu"              id="menu">
+
+                <button type="button"  class="menu__btn" id="menuBtnLogin">ログイン</button> 
+                <button type="button"  class="menu__btn" id="menuBtnSetting">設定</button> 
+            </div>
+            
+        </header>     
+                
+        <div class="stamp-card">
+            <div class="stamp-card-header">
+                <span class="stamp-card-header__span">スタンプカード</span>
+            </div>
+            <div class="stamps">
+              <!-- スタンプ枠 -->
+              <div class="stamp" >
+                <img src="stamp-none.png" class="stamp__img" id="stamp1"></img>
+              </div>
+              <div class="stamp">
+                <img src="stamp-none.png" class="stamp__img" id="stamp2"></img>
+              </div>
+              <div class="stamp" >
+                <img src="stamp-none.png" class="stamp__img" id="stamp3"></img>
+              </div>
+              <div class="stamp" >
+                <img src="stamp-none.png" class="stamp__img" id="stamp4"></img>
+              </div>
+              <div class="stamp" >
+                <img src="stamp5-small-present.png" class="stamp__img" id="stamp5"></img>
+              </div>
+              <div class="stamp" >
+                <img src="stamp-none.png" class="stamp__img" id="stamp6"></img>
+              </div>
+              <div class="stamp" >
+                <img src="stamp-none.png" class="stamp__img" id="stamp7"></img>
+              </div>
+              <div class="stamp" >
+                <img src="stamp-none.png" class="stamp__img" id="stamp8"></img>
+              </div>
+              <div class="stamp" >
+                <img src="stamp-none.png" class="stamp__img" id="stamp9"></img>
+              </div>
+              <div class="stamp" >
+                <img src="stamp10-big-present.png" class="stamp__img" id="stamp10"></img>
+              </div>
+            </div>
+        </div>
+
+        <div>
+            <span class="explain">QRコードを読み取る<br>＜タッチ＞</span>
+            <br>
+            <img class="qrcode" id="btn-scan" src="qrcode.png">
+            <div id="reader" style="width: 300px;"></div>
+        </div>
+
+        <img src="" class="present" id="imgPresent">
+
+        <div class="explain">
+            <div class="explain__title"></div>
+            <div class="explain__section"></div>
+        </div>
+
+        <script src="https://unpkg.com/html5-qrcode@2.3.8/minified/html5-qrcode.min.js"></script>
+
+        <script type="module" src="StamCard.js"></script>
+    </body>
+
+</html>
+
+
+
+
+

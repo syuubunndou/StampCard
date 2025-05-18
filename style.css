@@ -1,0 +1,219 @@
+
+/* 【CSSの書く順序】
+    position        : relative;
+    top(bottom)     : 0px
+    right(left)     : 0px;
+    margin          : 0px 0px 0px;
+    padding         : 0px 0px 0px;
+
+    width           : 0px;
+    overflow-x      : scroll;
+    height          : 0px;
+    overflow-y      : scroll;
+
+    background-color: red;
+    border-top      : 5px solid #b1b1b1; 
+    border-left     : 5px solid #b1b1b1; 
+    border-right    : 5px solid #b1b1b1; 
+    border-bottom   : 5px solid #b1b1b1;
+    box-shadow      : 2px 2px 5px rgba(0, 0, 0, 0.2); 
+    border-radius   : 5px; 
+
+    display         : block;    
+*/
+
+html, body {
+    margin          : 0;
+    padding         : 0;
+
+    width           : 100vw;  /* 画面の横幅いっぱい */
+    height          : 100vh; /* 画面の高さいっぱい */
+
+    overflow-x      : hidden; /* スクロールバーを防ぐ */
+    overflow-y      : scroll;
+
+    background-color: rgb(248, 243, 200);
+}
+
+/*=================================================================================*/
+/*====[ヘッダー部分]=============================================================================*/
+
+.header {
+    position        : relative;  /* 相対位置を基準 */
+    margin          : 0px 0px 10px;
+
+    width           : 100%;
+}
+
+.header__logo {
+    width           : 100%; /* 横幅いっぱいに */
+    height          : auto; /* 縦幅は自動調整 */
+    
+    display         : block; /* 余計な隙間をなくす */
+}
+
+.header__labo-logo{
+    position        : absolute;  /* 親要素 .header を基準に配置 */
+    bottom          : 0;  /* 下端に配置 */
+    right           : 300px;  /* 左端に配置 */
+    margin          : 0px 50px 0px;
+    
+    width           : 100px; /* ボタンサイズ（調整可） */
+    height          : auto;
+
+    display         : none;   
+}
+.header__btn {
+    position        : absolute;  /* 親要素 .header を基準に配置 */
+    bottom          : 0;  /* 下端に配置 */
+    right           : 0;  /* 左端に配置 */
+    margin          : 0px 50px 0px;
+
+    width           : 100px; /* ボタンサイズ（調整可） */
+    height          : auto;
+
+    
+}
+
+.header__user-name{
+    position        : absolute;  /* 親要素 .header を基準に配置 */
+    bottom          : 0;  /* 下端に配置 */
+    left            : 30px;
+
+    background-color: rgba(255, 255, 255, 0.678);
+
+    display         : none;
+}
+
+.header__add-btn{
+    position        : absolute;  /* 親要素 .header を基準に配置 */
+    bottom          : 0;  /* 下端に配置 */
+    right           : 120px;  /* 左端に配置 */
+    margin          : 0px 50px 0px;
+    
+    width           : 100px; /* ボタンサイズ（調整可） */
+    height          : auto;
+
+
+} 
+
+.menu{
+    position        : absolute;  /* 親要素 .header を基準に配置 */
+    right           : 52px;  /* 左端に配置 */
+
+    width           : 95px;
+    height          : auto;
+
+    display         : none;
+    z-index         : 99;
+}
+
+.menu__btn{
+    width           : 95px;
+    
+}
+
+.promptLogin{
+    position        : relative;
+    top             : 0%;
+    left            : 10%;
+
+    width           : 80%;
+
+    font-size       : 40px;
+
+    display         : none;
+
+    background-color: snow;
+    border-top      : 5px solid #000000; /* 青色の枠線 */
+    border-left     : 5px solid #000000; /* 青色の枠線 */
+    border-right    : 5px solid #000000; /* 青色の枠線 */
+    border-bottom   : 5px solid #000000;
+    box-shadow      : 2px 2px 5px rgba(0, 0, 0, 0.2); /* 影を追加 */
+    border-radius   : 5px; /* 角を丸くする */  
+}
+.promptLogin__haguruma{
+    position        : relative;
+    top             : 15px;
+    width           : 60px;
+}
+.promptLogin__login-exp{
+    position        : relative;
+    top             : 5px;
+    width           : 120px;   
+}
+
+
+/*===========================================================================*/
+/*============スタンプカードのデザイン=========================================*/
+
+.stamp-card {
+    position: relative;
+    top: 15%;
+    width: 80%;
+    left: 10%;
+    right: 10%;
+    height: 30vh;
+    background-color: rgb(180, 196, 113);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stamp-card-header__span {
+    position: relative;
+    bottom: 20px;
+    margin: 0px 0px 10px;
+    font-size: 40px;
+  }
+  .stamps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 横5列 */
+    grid-template-rows: repeat(2, 1fr);     /* 縦2行 */
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .stamp {
+    border: 2px solid #000000;
+    border-radius: 4px;
+    background-color: #ffffff;
+    aspect-ratio: 1 / 1; /* 正方形 */
+  }
+
+  .stamp__img{
+    position: relative;
+    top: 7px;
+    left: 10px;
+    height: 90%;
+    width: 90%;
+  }
+
+  .explain{
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    top: 21vh;
+    left: 25%;
+    font-size: 50px;
+  }
+  .qrcode{
+    position: relative;
+    top: 22vh;
+    left: 28%;
+    height: 40%;
+    width: 40%;
+  }
+
+  .present{
+    position: absolute;
+    top: 25%;
+    left: 10%;
+
+    height: 40%;
+  }
