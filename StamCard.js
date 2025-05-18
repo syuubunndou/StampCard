@@ -1534,7 +1534,7 @@ class StampSystem {
             this.html5QrCode.stop();
         }, (_) => {
         }).catch((err) => {
-            console.error("読み取りエラー", err);
+            alert(`読み取りエラー : ${err}`);
         });
     }
     judgeGetPoint() {
@@ -1577,6 +1577,9 @@ class StampSystem {
                 }
                 this.FirebaseFunc.uploadData("stamps", this.stamps);
             }
+            else {
+                alert(`now is not night`);
+            }
         });
     }
     isNight() {
@@ -1586,6 +1589,7 @@ class StampSystem {
             return true;
         }
         else {
+            alert(`now is not night : hour[${CURRENT_HOUR}]`);
             return false;
         }
     }
