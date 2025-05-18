@@ -1585,7 +1585,7 @@ class StampSystem {
     isNight() {
         const CURRENT_DATE = new Date();
         const CURRENT_HOUR = CURRENT_DATE.getHours();
-        if (21 >= CURRENT_HOUR && CURRENT_HOUR == 0) {
+        if (21 <= CURRENT_HOUR || CURRENT_HOUR == 0) {
             return true;
         }
         else {
