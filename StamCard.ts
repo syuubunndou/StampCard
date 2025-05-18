@@ -2600,8 +2600,8 @@ class StampSystem {
 
         const SCAN_BUTTON = document.getElementById("btn-scan");
         if (SCAN_BUTTON) {
-            //SCAN_BUTTON.addEventListener("click", () => this.startScanning());
-            SCAN_BUTTON.addEventListener("click",()=>this.judgeGetPoint());
+            SCAN_BUTTON.addEventListener("click", () => this.startScanning());
+            //SCAN_BUTTON.addEventListener("click",()=>this.judgeGetPoint());
         }
         
         this.renderStamps();
@@ -2648,48 +2648,49 @@ class StampSystem {
 
     async judgeGetPoint():Promise<void> {
         if(this.isNight()){
-           
+            this.stamps += 1;
+            if(this.stamps > 10){
+                this.stamps = 1;
+            }else if(this.stamps === 5 ){
+                const PRESENT_IMG = document.getElementById("imgPresent") as HTMLImageElement;
+                const STAMP = document.getElementById(`stamp${this.stamps}`) as HTMLImageElement;
+                STAMP.src = "stamp5-small-present--ok.png";
+
+                PRESENT_IMG.src = "present.gif";
+                await new UtilsFunctions().sleep(3000);
+                PRESENT_IMG.style.display = "none";
+                alert("500円分のプレゼントを獲得しました！")
+            }else if(this.stamps === 10){
+                const PRESENT_IMG = document.getElementById("imgPresent") as HTMLImageElement;
+                const STAMP = document.getElementById(`stamp${this.stamps}`) as HTMLImageElement;
+                STAMP.src = "stamp10-big-present--ok.png";
+
+                PRESENT_IMG.src = "present.gif";
+                await new UtilsFunctions().sleep(3000);
+                PRESENT_IMG.style.display = "none";
+                alert("1000円分のプレゼントを獲得しました！")
+            }else{
+                alert("スタンプ獲得！！")
+
+                const STAMP = document.getElementById(`stamp${this.stamps}`) as HTMLImageElement;
+                STAMP.src = "stamp--ok.png";
+
+                const n = 10; // 例えば10までの乱数
+                const rndNumber = Math.floor(Math.random() * n) + 1;
+                const PRESENT_IMG = document.getElementById("imgPresent") as HTMLImageElement;
+                console.log(`img_bonus${rndNumber}`);
+                PRESENT_IMG.src = `img_bonus${rndNumber}.png`;
+                PRESENT_IMG.style.display = "block";
+                await new UtilsFunctions().sleep(4000);
+                PRESENT_IMG.style.display = "none";
+            
+            }   
+            this.FirebaseFunc.uploadData("stamps",this.stamps);
         }
-        this.stamps += 1;
-        if(this.stamps > 10){
-            this.stamps = 1;
-        }else if(this.stamps === 5 ){
-            const PRESENT_IMG = document.getElementById("imgPresent") as HTMLImageElement;
-            const STAMP = document.getElementById(`stamp${this.stamps}`) as HTMLImageElement;
-            STAMP.src = "stamp5-small-present--ok.png";
-
-            PRESENT_IMG.src = "present.gif";
-            await new UtilsFunctions().sleep(3000);
-            PRESENT_IMG.style.display = "none";
-            alert("500円分のプレゼントを獲得しました！")
-        }else if(this.stamps === 10){
-            const PRESENT_IMG = document.getElementById("imgPresent") as HTMLImageElement;
-            const STAMP = document.getElementById(`stamp${this.stamps}`) as HTMLImageElement;
-            STAMP.src = "stamp10-big-present--ok.png";
-
-            PRESENT_IMG.src = "present.gif";
-            await new UtilsFunctions().sleep(3000);
-            PRESENT_IMG.style.display = "none";
-            alert("1000円分のプレゼントを獲得しました！")
-        }else{
-            alert("スタンプ獲得！！")
-
-            const STAMP = document.getElementById(`stamp${this.stamps}`) as HTMLImageElement;
-            STAMP.src = "stamp--ok.png";
-
-            const n = 10; // 例えば10までの乱数
-            const rndNumber = Math.floor(Math.random() * n) + 1;
-            const PRESENT_IMG = document.getElementById("imgPresent") as HTMLImageElement;
-            console.log(`img_bonus${rndNumber}`);
-            PRESENT_IMG.src = `img_bonus${rndNumber}.png`;
-            PRESENT_IMG.style.display = "block";
-            await new UtilsFunctions().sleep(4000);
-            PRESENT_IMG.style.display = "none";
         
-        }
 
 
-        this.FirebaseFunc.uploadData("stamps",this.stamps)
+        
     }
 
     isNight():boolean{
